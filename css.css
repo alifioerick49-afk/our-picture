@@ -1,17 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap');
 
-/* =========================
-   RESET
-========================= */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* =========================
-   HALAMAN 1 DAN 2
-========================= */
+/* HALAMAN 1 DAN 2 */
 body {
     min-height: 100vh;
     display: flex;
@@ -60,7 +56,7 @@ p {
     font-size: 13px;
     border-radius: 30px;
     box-shadow: 0 5px 15px #d91e4f35;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .button:hover {
@@ -69,9 +65,7 @@ p {
     box-shadow: 0 8px 22px #d91e4f55;
 }
 
-/* =========================
-   HALAMAN 2
-========================= */
+/* HALAMAN 2 */
 .subtitle {
     color: #c47a91;
     font-size: 10px;
@@ -111,9 +105,7 @@ p {
     color: #d91e4f;
 }
 
-/* =========================
-   TOMBOL HITUNG MUNDUR
-========================= */
+/* TOMBOL HITUNG MUNDUR */
 .next-button {
     display: inline-block;
     margin-top: 25px;
@@ -133,7 +125,6 @@ p {
 .next-button:hover {
     background: #d65380;
     transform: translateY(-3px);
-    box-shadow: 0 8px 22px #d91e4f50;
 }
 
 .next-button:disabled {
@@ -149,9 +140,7 @@ p {
     font-weight: 500;
 }
 
-/* =========================
-   HALAMAN 3 - GALERI
-========================= */
+/* HALAMAN 3: GALERI */
 .gallery-page {
     display: block;
     min-height: 100vh;
@@ -177,34 +166,39 @@ p {
 .gallery-page .header p {
     font-size: 14px;
     color: #987181;
+    margin-bottom: 0;
 }
 
-/* Susunan foto */
+/* GRID FOTO */
 .gallery-page .gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 30px 18px;
+    width: 100%;
     max-width: 950px;
     margin: 0 auto;
     padding: 20px 18px 40px;
 }
 
-/* Kondisi awal foto: terlihat, jadi tidak blank */
 .gallery-page .photo {
-    background: white;
+    min-width: 0;
+    background: #ffffff;
     padding: 8px;
     border-radius: 5px;
     box-shadow: 0 6px 18px #d66b8c30;
+
+    /* Foto tetap terlihat walaupun JavaScript gagal */
     opacity: 1;
     transform: translateY(0);
+
     transition:
         opacity 0.7s ease,
         transform 0.7s ease,
         box-shadow 0.3s ease;
+
     position: relative;
 }
 
-/* Sudut foto */
 .gallery-page .photo:nth-child(odd) {
     rotate: -3deg;
 }
@@ -213,9 +207,10 @@ p {
     rotate: 3deg;
 }
 
-/* Animasi saat foto masuk layar */
+/* KELAS ANIMASI */
 .gallery-page .photo.show {
-    animation: photoAppear 0.8s ease both;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .gallery-page .photo img {
@@ -232,9 +227,7 @@ p {
     z-index: 2;
 }
 
-/* =========================
-   TOMBOL KEMBALI
-========================= */
+/* TOMBOL KEMBALI */
 .gallery-page .back-container {
     display: flex;
     justify-content: center;
@@ -263,9 +256,7 @@ p {
     box-shadow: 0 8px 20px #d66b8c50;
 }
 
-/* =========================
-   ANIMASI
-========================= */
+/* ANIMASI */
 @keyframes heartbeat {
     0%, 100% {
         transform: scale(1);
@@ -288,21 +279,7 @@ p {
     }
 }
 
-@keyframes photoAppear {
-    from {
-        opacity: 0.5;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE TABLET DAN DESKTOP */
 @media (min-width: 768px) {
     .gallery-page .gallery {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -310,6 +287,7 @@ p {
     }
 }
 
+/* RESPONSIVE HP */
 @media (max-width: 480px) {
     .heart {
         font-size: 58px;
@@ -342,15 +320,5 @@ p {
 
     .gallery-page .photo {
         padding: 6px;
-    }
-}
-
-/* Mengurangi animasi jika pengguna memilihnya */
-@media (prefers-reduced-motion: reduce) {
-    .gallery-page .photo,
-    .container,
-    .heart {
-        animation: none;
-        transition: none;
     }
 }
