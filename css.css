@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500&display=swap');
+
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   HALAMAN 1 DAN 2
+========================= */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fffafb;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 35px 25px;
+    text-align: center;
+    animation: fadeIn 1.2s ease;
+}
+
+.heart {
+    font-size: 65px;
+    color: #d91e4f;
+    margin-bottom: 18px;
+    animation: heartbeat 1.8s infinite;
+    text-shadow: 0 5px 15px #e83b6540;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 6vw, 48px);
+    color: #c7254e;
+    margin-bottom: 12px;
+}
+
+p {
+    color: #777078;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.button {
+    display: inline-block;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #e52b58, #c91545);
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px #d91e4f35;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: #b91641;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px #d91e4f55;
+}
+
+/* =========================
+   HALAMAN 2
+========================= */
+.subtitle {
+    color: #c47a91;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.divider {
+    width: 55px;
+    height: 2px;
+    background: #f0b2c6;
+    margin: 25px auto;
+}
+
+.message {
+    color: #75515f;
+    font-size: 14px;
+    line-height: 2.1;
+}
+
+.signature {
+    color: #e57fa3;
+    font-size: 13px;
+    font-style: italic;
+    margin: 22px 0 35px;
+}
+
+.back {
+    display: block;
+    margin-top: 25px;
+    color: #b77a90;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.back:hover {
+    color: #d91e4f;
+}
+
+/* =========================
+   TOMBOL HITUNG MUNDUR
+========================= */
+.next-button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 14px 28px;
+    background: #e879a0;
+    color: white;
+    border: none;
+    text-decoration: none;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px #d91e4f30;
+    transition: 0.3s ease;
+}
+
+.next-button:hover {
+    background: #d65380;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px #d91e4f50;
+}
+
+.next-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#countdown {
+    margin-top: 18px;
+    color: #d91e4f;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* =========================
+   HALAMAN 3 - GALERI
+========================= */
+.gallery-page {
+    display: block;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #fff0f5;
+    color: #704455;
+    font-family: 'Poppins', sans-serif;
+}
+
+.gallery-page .header {
+    text-align: center;
+    padding: 45px 15px 30px;
+}
+
+.gallery-page .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 42px);
+    margin-bottom: 10px;
+    color: #d65a85;
+}
+
+.gallery-page .header p {
+    font-size: 14px;
+    color: #987181;
+}
+
+/* Susunan foto */
+.gallery-page .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 18px;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 20px 18px 40px;
+}
+
+/* Kondisi awal foto: terlihat, jadi tidak blank */
+.gallery-page .photo {
+    background: white;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 6px 18px #d66b8c30;
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Sudut foto */
+.gallery-page .photo:nth-child(odd) {
+    rotate: -3deg;
+}
+
+.gallery-page .photo:nth-child(even) {
+    rotate: 3deg;
+}
+
+/* Animasi saat foto masuk layar */
+.gallery-page .photo.show {
+    animation: photoAppear 0.8s ease both;
+}
+
+.gallery-page .photo img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    border-radius: 3px;
+}
+
+.gallery-page .photo:hover {
+    scale: 1.03;
+    box-shadow: 0 10px 25px #d66b8c50;
+    z-index: 2;
+}
+
+/* =========================
+   TOMBOL KEMBALI
+========================= */
+.gallery-page .back-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 15px 15px 40px;
+}
+
+.gallery-page .back-button {
+    display: inline-block;
+    padding: 13px 24px;
+    background: linear-gradient(135deg, #e879a0, #d65380);
+    color: white;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px #d66b8c35;
+    transition: 0.3s ease;
+}
+
+.gallery-page .back-button:hover {
+    background: linear-gradient(135deg, #d65380, #c7254e);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px #d66b8c50;
+}
+
+/* =========================
+   ANIMASI
+========================= */
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes photoAppear {
+    from {
+        opacity: 0.5;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (min-width: 768px) {
+    .gallery-page .gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 40px 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .heart {
+        font-size: 58px;
+    }
+
+    .next-button {
+        padding: 12px 24px;
+        font-size: 12px;
+    }
+
+    .gallery-page .header {
+        padding-top: 30px;
+    }
+
+    .gallery-page .header p {
+        font-size: 12px;
+    }
+
+    .gallery-page .back-button {
+        padding: 12px 22px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .gallery-page .gallery {
+        gap: 22px 12px;
+        padding: 15px 12px 30px;
+    }
+
+    .gallery-page .photo {
+        padding: 6px;
+    }
+}
+
+/* Mengurangi animasi jika pengguna memilihnya */
+@media (prefers-reduced-motion: reduce) {
+    .gallery-page .photo,
+    .container,
+    .heart {
+        animation: none;
+        transition: none;
+    }
+}

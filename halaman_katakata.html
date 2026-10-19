@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Message 💗</title>
+
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <div class="heart">♡</div>
+
+        <p class="subtitle">A LITTLE MESSAGE</p>
+
+        <h1>For You</h1>
+
+        <div class="divider"></div>
+
+        <p class="message">
+            Do you know what’s even more beautiful than this world? 
+            It’s all the photos of you that I could stare at forever🤍
+        </p>
+
+        <p class="signature">
+            — You are my favorite person ♡
+        </p>
+
+        <!-- TOMBOL GALERI -->
+        <button
+            class="next-button"
+            id="nextButton"
+            onclick="startCountdown()">
+            This your gallery →
+        </button>
+
+        <!-- ANGKA HITUNG MUNDUR -->
+        <p id="countdown" aria-live="polite"></p>
+
+        <a href="index.html" class="back">
+            ← Back to Home
+        </a>
+
+    </main>
+
+    <!-- JAVASCRIPT HITUNG MUNDUR -->
+    <script>
+        function startCountdown() {
+            const button = document.getElementById("nextButton");
+            const countdown = document.getElementById("countdown");
+
+            let seconds = 5;
+
+            button.disabled = true;
+            button.textContent = "Waitt.....";
+            countdown.textContent = seconds;
+
+            const timer = setInterval(function () {
+                seconds--;
+
+                if (seconds > 0) {
+                    countdown.textContent = seconds;
+                } else {
+                    clearInterval(timer);
+                    countdown.textContent = "Here we go! 💗";
+                    window.location.href = "gallery.html";
+                }
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
